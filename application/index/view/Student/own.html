@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+	<meta charset="utf-8">
+	<title>个人信息</title>
+	 <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+</head>
+<body class="contanier">
+	<div class="row">
+		<div class="col-md-12">
+				 <hr />
+                 <table class="table table-hover table-bordered">
+                  <a href="{:url('Student/index')}"class="btn btn-primary"><i class="g lyphicon glyphicon-plus"></i>&nbsp;学生表</a>
+                    <tr class="info">
+                       <th>学号</th>
+                       <th>姓名</th>
+                       <th>性别</th>
+                       <th>用户名</th>
+                       <th>联系方式</th>
+                       <th>邮箱</th>
+                       <td>操作</td>
+                    </tr>
+                    <tr>
+                       <td>{$Student->student_number}</td>
+                       <td>{$Student->student_name}</td>
+                       <td>{eq name='Student->sex' value='0'}男{else /}女{/eq}</td>
+                       <td>{$Student->user_name}</td>
+                       <td>{$Student->telephone}</td>
+                       <td>{$Student->email}</td>            
+                       <td><a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $Student->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a></td>
+                    </tr>
+			</form>
