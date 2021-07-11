@@ -4,22 +4,19 @@
 {/block}
 <link rel="stylesheet" type="text/css" href="/demoOfCourse/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
 {block name="content"}
+<form class="form-inline">
+	<div align="right">
+		<a href="{:url('add')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+	</div>
+	<label class="sr-only" for="username" align="right" >用户名</label>
+	<input type="text" name="username" class="form-control" placeholder="用户名..." value="">
+	<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+</form>
+<br>
 <table class="table table-hover table-bordered">
-	<div class="form-group" align="right"> 
-	<!-- <div align="left|right|center|justify">，左对齐、右对齐、居中、全行扩展
-		style="color:#0000FF"，style="background:red" 背景颜色可以red,yellow等，或者字体颜色#0000FF形式-->
-		<a  href="{:url('add')}" style="color:black"   class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
-	</div> 
-	<form class="form-inline"> 
-		<div class="form-group"> 
-			<label class="sr-only" for="name">用户名</label> 
-			<input name="username" type="text"  placeholder="用户名..." value="{:input('get.username')}"> 
-			<button type="submit" style="background:#EEEEEE" ><i class= "glyphicon glyphicon-search"></i>&nbsp;查询</button> <!--背景颜色后面：class="btn btn-default"，删除以后大小和搜索框相同-->
-		</div> 
-	</form> 
 	<tr class="info">
 		<th>序号</th> 
-		<th>用户名</th> 
+		<th>用户名</th>
 		<th>操作</th>
 	</tr> 
 	{volist name="admins" id="admin" key="key" }
@@ -27,8 +24,8 @@
 		<td>{$key}</td> 
 		<td>{$admin->getData('username')}</td> 
 		<td>
-			<a  style="color:black" class="btn btn-info" href="{:url('edit?id=' . $admin->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
-			<a  style="color:black" class="btn btn-danger"  href="{:url('delete?id='. $admin->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a></td>	
+			<a   class="btn btn-sm btn-primary" href="{:url('edit?id=' . $admin->getData('id'))}"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
+			<a   class="btn btn-danger btn-sm"  href="{:url('delete?id='. $admin->getData('id'))}"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a></td>	
 		</td>
 	</tr> 
 	{/volist}		

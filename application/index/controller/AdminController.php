@@ -12,7 +12,7 @@ class AdminController extends IndexController
     {
 
         $username = input('get.username');
-        $pageSize = 2; // 每页显示5条数据  
+        $pageSize = 5; // 每页显示5条数据  
         $Admin = new Admin; 
         // 打印$Admin 至控制台 
         trace($Admin, 'debug');
