@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>学生课程管理系统</title>
+	<link rel="stylesheet" type="text/css" href="/demoOfCourse/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+	<style type="text/css">
+		th,td{
+			text-align: center; vertical-align: middle;
+		}
+	</style>
+</head>
+<body class="container">
+
+	<!-- 菜单导航 -->
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a href="http://www.tute.edu.cn/" class="navbar-brand">天职师大</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="{:url('Login/index')}">登录</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a>
+								当前时间为：
+								<?php
+								$weekArray = array('日', '一', '二', '三', '四', '五', '六');
+								echo'星期'.$weekArray[date('w')];
+								?>
+							</a></li>
+						</ul>						
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- 菜单导航 -->
+	<div class="row" > 
+		<div class="col-md-12" >
+			<form id="term_form" method="get" action="{:url('CourseInfo')}"> 
+				<label>上课学期:</label>
+				<select name="term_id" id="term" onchange="submitTermForm();">
+					{volist name="terms" id="_Term"}
+					<option value="{$_Term->getData('id')}" 
+						<?php
+						if($_Term->getData('id') === $nowTerm->id)
+						{
+							echo "selected='selected'";
+						}
+						?>
+						>{$_Term->getData('name')}</option>
+						{/volist}
+					</select><br/>
+				</form>
+				<form id="week_form" method="get" action="{:url('CourseInfo')}">
+					<input type="hidden" name="term_id" value="{$termId}">
+					<label>当前周次:</label>
+					<select name="week" id="weekNum" onchange="submitWeekForm();">
+						{volist name="termWeekInfo" id="_termWeekInfo"}
+						<option value="{$_termWeekInfo['week']}" 
+						<?php
+						if($_termWeekInfo['week'] === $selectedWeek)
+						{
+							echo "selected='selected'";
+						}
+						?>
+						>第{$_termWeekInfo['week']}周</option>
+						{/volist}
+					</select><br/>
+				</form>
+			</div>
+			<div class="col-md-12">
+				<table class="table table-hover" >
+					<button class="btn btn-primary">星期一</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info" style="text-align: center; vertical-align: middle; ">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay1" id="_studentCourseDay1" key="key"}
+					<tr>
+						<td>{$_studentCourseDay1[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay1[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay1[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay1[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay1[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay1[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+				<table class="table table-hover">
+					<button class="btn btn-primary">星期二</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay2" id="_studentCourseDay2" key="key"}
+					<tr>
+						<td>{$_studentCourseDay2[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay2[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay2[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay2[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay2[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay2[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+				<table class="table table-hover">
+					<button class="btn btn-primary">星期三</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay3" id="_studentCourseDay3" key="key"}
+					<tr>
+						<td>{$_studentCourseDay3[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay3[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay3[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay3[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay3[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay3[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+				<table class="table table-hover">
+					<button class="btn btn-primary">星期四</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay4" id="_studentCourseDay4" key="key"}
+					<tr>
+						<td>{$_studentCourseDay4[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay4[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay4[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay4[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay4[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay4[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+				<table class="table table-hover">
+					<button class="btn btn-primary">星期五</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay5" id="_studentCourseDay5" key="key"}
+					<tr>
+						<td>{$_studentCourseDay5[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay5[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay5[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay5[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay5[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay5[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+				<table class="table table-hover">
+					<button class="btn btn-primary">星期六</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay6" id="_studentCourseDay6" key="key"}
+					<tr>
+						<td>{$_studentCourseDay6[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay6[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay6[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay6[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay6[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay6[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+				<table class="table table-hover">
+					<button class="btn btn-primary">星期天</button>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-education' style='color: red;'>有课</i>&nbsp;&nbsp;&nbsp;&nbsp;<i class='glyphicon glyphicon-ok-sign' style='color: green;'>无课</i>
+					<tr class="info">
+						<th>学生姓名</th>
+						<th>第一节</th>
+						<th>第二节</th>
+						<th>第三节</th>
+						<th>第四节</th>
+						<th>第五节</th>
+					</tr>
+					{volist name="studentCourseDay0" id="_studentCourseDay0" key="key"}
+					<tr>
+						<td>{$_studentCourseDay0[0]}</td>
+						<td>
+							<?php
+							if($_studentCourseDay0[1] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay0[2] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay0[3] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay0[4] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+						<td>
+							<?php
+							if($_studentCourseDay0[5] === '有课')
+							{
+								echo "<i class='glyphicon glyphicon-education' style='color: red;'></i>";
+							}else
+							{
+								echo "<i class='glyphicon glyphicon-ok-sign' style='color: green;'></i>";
+							}
+							?>
+						</td>
+					</tr>
+					{/volist}
+				</table>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function submitTermForm(){
+    	var termform = document.getElementById("term_form");//获取form表单对象
+   		termform.submit();//form表单提交
+		}
+		function submitWeekForm(){
+    	var weekform = document.getElementById("week_form");//获取form表单对象
+    	weekform.submit();//form表单提交
+		}
+</script>
+</html>

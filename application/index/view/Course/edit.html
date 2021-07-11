@@ -1,0 +1,33 @@
+{extend name="menu"/}
+{block name="title"}
+课程编辑
+{/block}
+{block name="content"}
+	<div class="row" > 
+		<div class="col-md-12" > 
+			<form action="{:url('update')}" method="post" > 
+				<input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}">
+				
+				<label>课程Id:</label> 
+				<input type="hidden" name="id" value="{$Course->getData('id')}" />
+				<input type="text" name="name" value="{$Course->getData('id')}" disabled="disabled" /><br/>
+
+				<label>课程名:</label> 
+				<input type="text" name="name" value="{$Course->getData('name')}" /><br/>
+
+				
+				<button type="submit" align="left">保存</button> 
+			</form> 
+		</div> 
+	</div> 
+{/block}
+{block name="page"}
+{/block}
+
+<script>
+ 
+    $(document).on('focus', 'input[readonly]', function () {
+            this.blur();
+    });
+ 
+</script>

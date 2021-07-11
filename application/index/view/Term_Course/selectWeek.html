@@ -1,0 +1,71 @@
+{extend name="menu"/}
+{block name="title"}
+课程周次增加
+{/block}
+{block name="content"}
+	<div class="row"> 
+		<div class="col-md-12"> 
+			<form action="{:url('save')}" method="post"> 
+				<input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}">
+				<label>课程名:</label> 
+				<input type="hidden" name="id" value="{$Course->getData('id')}"/>
+				<input type="text" name="name" value="{$Course->getData('name')}" disabled="disabled" /><br/>
+				
+				<label>学期:</label> 
+				<select name="term_id" id="term">
+					{volist name="terms" id="_Term"}
+					<option value="{$_Term->getData('id')}">{$_Term->getData('name')}</option>
+					{/volist}
+				</select><br/>
+				
+				<label>星期:</label>
+				<select name="week_day">
+					<option value="0">星期天</option>
+					<option value="1">星期一</option>
+					<option value="2">星期二</option>
+					<option value="3">星期三</option>
+					<option value="4">星期四</option>
+					<option value="5">星期五</option>
+					<option value="6">星期六</option>
+				</select><br/>
+				
+
+				<label>节次:</label> 
+				<select name="period">
+					<option value="1">第1大节</option>
+					<option value="2">第2大节</option>
+					<option value="3">第3大节</option>
+					<option value="4">第4大节</option>
+					<option value="5">第5大节</option>
+				</select><br/>				
+
+				<label>周次:</label> <br/>
+				<input type="checkbox" name="week[]" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="5">5<br/>
+				<input type="checkbox" name="week[]" value="6">6&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="7">7&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="8">8&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="9">9&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="10">10<br/>
+				<input type="checkbox" name="week[]" value="11">11&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="12">12&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="13">13&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="14">14&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="15">15<br/>
+				<input type="checkbox" name="week[]" value="16">16&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="17">17&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="18">18&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="19">19&nbsp;&nbsp;
+				<input type="checkbox" name="week[]" value="20">20<br/>
+
+				<br/>
+				<button type="submit">保存</button> 
+			</form> 
+		</div> 
+	</div> 
+{/block}
+{block name="page"}
+{/block}

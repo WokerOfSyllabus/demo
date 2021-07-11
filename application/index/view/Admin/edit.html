@@ -1,0 +1,39 @@
+{extend name="menu"/}
+{block name="title"}
+管理员编辑
+{/block}
+<!---->
+<link rel="stylesheet" type="text/css" href="/demoOfCourse/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+{block name="content"}
+<br><!--<img src="/demoOfCourse/public/static/img/1.png" width="33" height="32"/>-->
+<form action="{:url('update')}" method="post"> 
+    <input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}"/>
+    <label>用户名:</label> 
+    <input type="hidden" name="id" value="{$Admin->getData('id')}" />
+    <input type="text" name="username" value="{$Admin->username}"/>
+    <br>
+    <br>
+    <label>&nbsp;&nbsp;&nbsp;密码:</label> 
+    <input  id = "demo" type="password" name="password" value="{$Admin->password}"/> 
+    <button type="button"  onclick="myFunction()">👁</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-primary" class="a" id="para1" type="submit"><i></i>保存</button>
+</form>
+<p id="demo"><!--JavaScript 能改变 HTML 元素的样式。--></p>
+<script>
+     var flag = 0;  //定义一个flag
+     function myFunction()
+     {
+        x=document.getElementById("demo") // 找到元素
+        if(flag ==0){
+          x.type="text" 
+          flag =1; 
+      } else {
+        x.type="password";
+        flag =0  ;       // 明文密文
+    }
+}
+</script>
+<br>
+{/block}
+{block name="page"} 
+{/block}

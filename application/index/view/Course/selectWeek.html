@@ -1,0 +1,25 @@
+{extend name="menu"/}
+{block name="title"}
+课程周次增加
+{/block}
+{block name="content"}
+	<div class="row"> 
+		<div class="col-md-12"> 
+			<form name="addCourse" action="{:url('save')}" method="post"> 
+
+				<label>课程名:</label> 
+				<input type="text" name="name" value="{$Course->getData('name')}" /><br/>
+
+				<label>星期:</label> 
+				<input type="text" name="name" value="{$Course->Term->getData('name')}" /><br/> 
+
+				<!-- <label>节次:</label> 
+				<input type="text" name="name" value="{$Course->getData('name')}" /><br/> -->
+				<br/>
+				<button type="submit">保存</button> 
+			</form> 
+		</div> 
+	</div> 
+{/block}
+{block name="page"}
+{/block}

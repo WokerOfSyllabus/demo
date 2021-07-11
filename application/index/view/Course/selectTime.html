@@ -1,0 +1,99 @@
+{extend name="menu"/}
+{block name="title"}
+课程选时
+{/block}
+{block name="content"}
+	<div class="row" align="center"> 
+		<div class="col-md-12" > 
+			<form action="{:url('update')}" method="post" > 
+				
+				<!-- <label>课程Id:</label> 
+				<input type="hidden" name="id" value="{$Course->getData('id')}"/>
+				{$Course->getData('id')}<br/>
+
+				<label>课程名:</label> 
+				<input type="text" name="name" value="{$Course->getData('name')}" /><br/>
+ -->
+				
+				
+
+				<div class="col-md-12" >  
+				
+
+					<table class="table table-hover table-bordered"> 
+						<a href="//www.runoob.com/html/html-tutorial.html"><img src="D:\xampp\htdocs\thinkphp5\application\index\view\1.jpg" border="0" src=".jpg" alt = "" width="0"height="0" ></a>
+						
+						<tr class="info">
+							<th>节次\星期</th>
+							<th>星期一</th>
+							<th>星期二</th>
+							<th>星期三</th>
+							<th>星期四</th>
+							<th>星期五</th>
+							<th>星期六</th>
+							<th>星期日</th>
+						</tr> 
+						<tr id="1">{$TermCourse->week_day}===1
+							<td id="1"  class="info">第一节</td> 
+							<td><a class="btn btn-default" href="{:url('index\\Term_Course\\selectWeek?id=' . $Course->getData('id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;选择周次</a></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+						</tr> 
+						<tr>
+							<td class="info">第二节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+							<td></td> 
+						</tr> 
+						<tr>
+							<td class="info">第三节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+							<td></td> 
+						</tr> 
+						<tr>
+							<td class="info">第四节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+							<td></td> 
+						</tr> 
+						<tr>
+							<td class="info">第五节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+						</tr> 
+
+						
+
+						<!-- <button type="submit" align="left">保存</button>  -->
+					</table> 
+				</div>
+			</form> 
+		</div> 
+	</div> 
+{/block}
+{block name="page"}
+
+{/block}
+

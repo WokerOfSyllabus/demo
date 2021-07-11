@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html lang="zh-cn"> 
+<head>
+    <meta charset="UTF-8"> 
+    <title>login</title> 
+</head> 
+<body>
+    <div id="container" style="width:500px;margin:144px auto" >
+        <div id="header" style="background-color:#456a8d;" align="center">
+            <h1 style="margin-bottom:0;color:white">管理员登陆</h1></div>
+            <!--<div id="menu" style="height:100px;width:500px;float:left;margin:0px auto" align="center"><b>登录</b></div>-->
+            <div id="menu" style="background-color:#EEEEEE;height:100px;width:500px;float:left;margin:0px auto" align="center"><b></b>  </div>
+            <div id="content" style="background-color:#EEEEEE;height:200px;width:500px;float:left;margin:0px auto" align="center">
+                <form action="{:url('login')}" method="post"> 
+                    <!--focus伪类:为输入框添加背景色-->
+                    <style>
+                    input:focus
+                    {
+                        background-color:BlanchedAlmond;
+                    }
+                </style>
+
+                <label for="username">登陆用户名:</label>
+                <input type="text" name="username" id="username" /> 
+                <br>
+                <br>
+                <label  for="password">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登陆密码:</label>
+                <input  id = "demo" type="password" name="password" id="password" />
+                <button type="button" onclick="myFunction()">👁</button>&nbsp;&nbsp;&nbsp;<button type="submit">保存</button> 
+                <p id="demo"><!--JavaScript 能改变 HTML 元素的样式。--></p>
+                <script>
+                    var flag = 0;  //定义一个flag
+                    function myFunction()
+                    { 
+                    x=document.getElementById("demo") // 找到元素
+                    if(flag ==0){
+                        x.type="text" 
+                        flag =1; 
+                    }else {
+                        x.type="password"; 
+                        flag =0  ;       // 明文密文
+                    }
+                }
+            </script><!--<button type="submit">保存</button> -->
+        </form>
+    </div>
+    <div id="footer" style="background-color:#456a8d;clear:both;text-align:center;color:white">
+    钉钉课表系统&nbsp;&nbsp;:王浩东&nbsp;&nbsp;张家乐&nbsp;&nbsp;段双玉&nbsp;&nbsp;赵佳星&nbsp;&nbsp;张瑞</div>
+</div>
+</body> 
+</html>

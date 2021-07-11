@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>钉钉配置-编辑</title>
+	<link rel="stylesheet" type="text/css" href="/demoOfCourse/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+<style type="text/css">
+	label{
+		width:8%; 
+		text-align: center;
+	}
+</style>
+</head>
+<body class="container">
+	<!-- 菜单导航 -->
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a href="http://www.tute.edu.cn/" class="navbar-brand">天职师大</a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="{:url('Login/logout')}">注销</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a>
+								当前时间为：
+								<?php
+								$weekArray = array('日', '一', '二', '三', '四', '五', '六');
+								echo'星期'.$weekArray[date('w')];
+								?>
+							</a></li>
+						</ul>						
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+	<!-- 菜单导航 -->
+	<div class="row">
+		<div class="col-md-12">
+			<form action="{:url('update')}" method="post">
+				<label>钉钉地址：</label>
+				<input type="text" name="dingding_url" style="width:90%;" value="{$Dingding->getData('dingding_url')}"/>
+				<br />
+				<label>每日发送时间:</label>
+				<input type="text" name="send_time_hour" style="width:5%;" value="{$Dingding->getData('send_time_hour')}">点
+				<input type="text" name="send_time_minute" style="width:5%;" value="{$Dingding->getData('send_time_minute')}">分
+				<br />
+				<label>关键词:</label>
+				<input type="text" name="keyword" value="{$Dingding->getData('keyword')}"/>
+				<label>校验码：</label>
+				<input type="text" name="check_code" value="{$Dingding->getData('check_code')}"/>	
+				<label>IP锁定地址:</label>
+				<input type="text" name="ip_url" value="{$Dingding->getData('ip_url')}"/>
+				<br />
+				<label>备注:</label>
+				<input type="text" name="remark" value="{$Dingding->getData('remark')}"/>
+				<br />
+				<button type="submit" class="btn btn-primary">更新</button>
+				<br />
+			</form>
+		</div>
+	</div>
+</body>

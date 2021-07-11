@@ -1,0 +1,162 @@
+{extend name="menu"/}
+{block name="title"}
+课程选时
+{/block}
+{block name="content"}
+			<form class="form-inline">
+       			<hr />
+		        <div class="col-lg-8">
+		            <!-- <form class="form-inline">
+		                <div class="form-group"><label class="sr-only" for="name">课程选时</label>
+		                    <input type="text" name="name" class="form-control" placeholder="课程名称..." value="">
+		                </div>
+		                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+		            </form> -->
+		        </div>
+		        <div class="col-lg-4 text-right">
+		            <a class="btn btn-default" href="{:url('index\\Term_Course\\selectWeek?id=' . $Course->getData('id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加周次</a></a>
+		        </div>
+		    </form>
+		    <hr />
+		    <hr />
+		
+
+				<!-- <div class="col-lg-8">
+		            <form class="form-inline">
+		                <div class="form-group"><label class="sr-only" for="id">课程名称</label>
+		                    <input type="text" name="id" class="form-control" placeholder="课程名称..." value="">
+		                </div>
+		                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+		            </form>
+		        </div> -->
+
+			<div class="col-md-12" >  
+				<table class="table table-hover table-bordered"> 
+					<a href="//www.runoob.com/html/html-tutorial.html"><img src="D:\xampp\htdocs\thinkphp5\application\index\view\1.jpg" border="0" src=".jpg" alt = "" width="0"height="0" ></a>
+					<tr class="info">
+						<th>序号</th>
+						<th>课程名称</th>
+						<!-- <th>课程ID</th> -->
+						<th>学期名称</th> 
+						<th>周次</th> 
+						<th>星期</th> 
+						<th>节次</th> 
+						<!-- <th>上课时间</th> 
+						<th>起始周</th> 
+						<th>结束周</th> 
+						<th>星期</th> 
+						<th>上课类型</th> 
+						<th>课程类型</th> 
+						<th>学期ID</th> -->
+						<!-- <th>操作</th> --> 
+					</tr> 
+					{volist name="termCourses" id="termCourse" key="key"}
+					<tr>
+						<td>{$key}</td> 
+						
+						<td>{$termCourse->Course->getData('name')}</td> 
+						<td>{$termCourse->Term->getData('name')}</td>
+						<td>第{$termCourse->getData('week')}周</td> 
+						<td>星期{$termCourse->getData('week_day')}</td> 
+						<td>第{$termCourse->getData('period')}大节</td>
+						<!-- <td>
+							<a class="btn btn-default" href="{:url('index\\Term_Course\\selectWeek?id=' . $Course->getData('id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;选择周次</a>
+						</td> -->
+					</tr> 
+					{/volist}
+				</table> 
+			</div>
+
+
+	<div class="row" align="center"> 
+		<div class="col-md-12" > 
+			<form action="{:url('add')}" method="post" > 
+
+				<div class="col-md-12" >  
+
+					<!-- <table class="table table-hover table-bordered"> 
+						<a href="//www.runoob.com/html/html-tutorial.html"><img src="D:\xampp\htdocs\thinkphp5\application\index\view\1.jpg" border="0" src=".jpg" alt = "" width="0"height="0" ></a>
+						
+						<tr class="info">
+							<th>节次\星期</th>
+							<th>星期一</th>
+							<th>星期二</th>
+							<th>星期三</th>
+							<th>星期四</th>
+							<th>星期五</th>
+							<th>星期六</th>
+							<th>星期日</th>
+						</tr> 
+						<tr>
+							<td id="1"  class="info">第一节</td> 
+							<td><a class="btn btn-default" href="{:url('index\\Term_Course\\selectWeek?id=' . $Course->getData('id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;选择周次</a>{$TermCourse->week_day==1}</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+						</tr> 
+						<tr>
+							<td class="info">第二节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+							<td></td> 
+						</tr> 
+						<tr>
+							<td class="info">第三节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+							<td></td> 
+						</tr> 
+						<tr>
+							<td class="info">第四节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+							<td></td> 
+						</tr> 
+						<tr>
+							<td class="info">第五节</td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td> 
+							<td></td>
+						</tr> 
+
+						
+
+					
+					</table>  -->
+					<!-- {$Course->getData('id')}</br>
+					{$Course->getData('name')}</br>
+					{$TermCourse->getData('week')}</br>
+					
+			
+						{volist name="TermCourse" id="TermCourse"}
+							{$TermCourse->getData('week')}
+						{/volist} -->
+					<br/>
+				</div>
+			</form> 
+		</div> 
+	</div> 
+{/block}
+{block name="page"}
+
+{/block}
+

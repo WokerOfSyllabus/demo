@@ -1,0 +1,49 @@
+{extend name="menu"/}
+{block name="title"}
+课程管理
+{/block}
+{block name="content"}
+				 <form class="form-inline">
+					<div class="form-group">
+						<label class="sr-only" for="name">课程名</label>
+						<input name="name" type="text" class="form-control"
+						placeholder="课程名..." value={:input( 'get.name')}>
+					</div>
+					<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+				</form>
+			<div class="col-md-4 text-right">
+				<a class="btn btn-sm btn-primary" href="{:url('add')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+			</div>
+			<div class="col-md-12">  
+				<table class="table table-hover table-bordered"> 
+					<a href="//www.runoob.com/html/html-tutorial.html"><img src="D:\xampp\htdocs\thinkphp5\application\index\view\1.jpg" border="0" src=".jpg" alt = "" width="0"height="0" ></a>
+					<tr class="info">
+						<th>序号</th>
+						<th>课程ID</th>
+						<th>课程名</th> 
+						<!-- <th>上课时间</th> 
+						<th>起始周</th> 
+						<th>结束周</th> 
+						<th>星期</th> 
+						<th>上课类型</th> 
+						<th>课程类型</th> 
+						<th>学期ID</th> -->
+						<th>操作</th> 
+					</tr> 
+					{volist name="courses" id="course" key="key"}
+					<tr>
+						<td>{$key}</td> 
+						<td>{$course->getData('id')}</td> 
+						<td>{$course->getData('name')}</td> 
+						<td>
+							<a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $course->getData('id'))}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;编辑</a> 
+							<a class="btn btn-sm btn-primary" href="{:url('delete?id=' . $course->getData('id'))}" class="btn btn-primary"><i class="g lyphicon glyphicon-plus"></i>&nbsp;删除</a> 
+						</td>
+					</tr> 
+					{/volist}
+				</table> 
+			</div>
+{/block}
+{block name="page"}
+{$courses->render()}
+{/block}

@@ -1,0 +1,37 @@
+{extend name="menu"/}
+{block name="title"}
+管理员增加
+{/block}
+<link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+{block name="content"}
+<br>
+<form action="insert" method="post"> 
+	<input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}"/>
+	<label>新增用户名:</label> 
+	<input type="text" name="username" /> 
+	<br>
+	<br>
+	<label>&nbsp;登陆密码:&nbsp;&nbsp;</label> 
+	<input  id = "demo"  type="password" name="password" /> 
+  <button type="button" onclick="myFunction()">👁</button>&nbsp;&nbsp;&nbsp;
+  <button  class="btn btn-primary"  type="submit">保存</button>
+</form>
+<p id="demo"><!--JavaScript 能改变 HTML 元素的样式。--></p>
+<script>
+            var flag = 0;  //定义一个flag
+            function myFunction(){
+                x=document.getElementById("demo") // 找到元素
+                if(flag ==0){
+                  x.type="text" 
+                  flag =1; 
+                }else {
+                  x.type="password"; 
+                flag =0  ;       // 明文密文
+              }
+            }
+          </script>
+          <br>
+          <!--<div class="row"></div>-->
+          {/block}
+          {block name="page"} 
+          {/block}

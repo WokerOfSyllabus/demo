@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{block name="title"}标题{/block}</title>
+    <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    <style type="text/css">
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a:focus {
+        text-decoration: none;
+    }
+    </style>
+    <!--   在style中加入 h1 {color:blue;}-->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2" style="height: 100%;background-color: #d9edf7;position: absolute;">
+                <div class="text-center" style="height: 50px;line-height: 50px;">
+                    <a href="#" style="text-decoration: none; color: black; display: block; font-size: larger;">
+                        <strong>菜单栏</strong></a>
+                </div>
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                               <a href="{:url('Admin/index')}">
+                                    用户管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                               <a href="{:url('Student/index')}">
+                                    学生管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                                 <a href="{:url('Course/index')}">
+                                    课程管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                                <a href="{:url('Term/index')}">
+                                    学期管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                                <a href="{:url('student_course/index')}">
+                                    选课管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                                <a href="{:url('Dingding/index')}">
+                                    钉钉配置管理
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title text-center">
+                                <a href="{:url('login/logout')}">
+                                    注销
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10" style="margin-left: 16.5%;position: absolute; float: right;">
+                <h1>{block name="title"}标题{/block}</h1>
+                {block name="content"}
+                {/block}
+                {block name="page"}
+                {/block}
+            </div>
+            <script src="/thinkphp5/public/static/jquery-3.5.1/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
+            <script src="/thinkphp5/public/static/bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8">
+            </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{extend name="menu"/}
+{block name="title"}
+选课编辑
+{/block}
+{block name="content"}
+<hr />
+<div class="container-fluid">
+    <form class="form-horizontal ng-pristine ng-valid-minlength ng-valid-required ng-valid ng-valid-unique" action="{:url('update')}" method="post">
+        <div class="form-group">
+            <input type="text" name="id" value="{$Student->getData('id')}" />
+            <div class="col-md-3">
+                <label class="control-label">学生学号:</label>
+                <input type="disable" name="studentId" id="studentId" value="{$Student->getData('number')}">
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">学生姓名:</label>
+                <input type="disable" name="studentId" id="studentId" value="{$Student->getData('name')}">
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label>课程名称:</label>
+                    <br>
+                    {volist name="Student->Courses()->select()" id="course"}
+                    <input type="checkbox" name="course_id[]" id="course_id_{$course->id}" value="{$course->id}" 
+                    {eq name="Student->getIsChecked($course)" value="true" }checked="checked" {/eq}>
+                    <label for="course_id_{$course->id}">{$course->getData('name')}</label>
+                    {/volist}
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit" style="float:right">保存</button>
+    </form>
+    <hr />
+</div>
+{/block}

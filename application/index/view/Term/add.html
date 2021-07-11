@@ -1,0 +1,25 @@
+{extend name="menu"/}
+{block name="title"}
+学期增加
+{/block}
+{block name="content"}
+	<div class="row"> 
+		<div class="col-md-12"> 
+			<form name="addCourse" action="{:url('save')}" method="post"> 
+				<input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}">
+				<label>学期:</label> 
+				<input type="text" name="name" /> <br/>
+				<label>学期开始时间:</label>
+				<input type="Date" name="start_time"><br/>
+				<label>学期结束时间:</label>
+				<input type="Date" name="end_time">	<br/>			
+				
+				
+				<button type="submit">保存</button> 
+			</form> 
+		</div> 
+	</div> 
+{/block}
+{block name="page"}
+{/block}
+

@@ -1,0 +1,33 @@
+{extend name="menu"/}
+{block name="title"}
+选课添加
+{/block}
+{block name="content"}
+<hr />
+<div class="container-fluid">
+    <form class="form-horizontal ng-pristine ng-valid-minlength ng-valid-required ng-valid ng-valid-unique" action="{:url('save')}" method="post">
+        <div class="form-group">
+            <div class="col-md-3">
+                <label class="control-label">学生学号:</label>
+                <input type="text" name="stu_num" id="stu_num">
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">学生姓名:</label>
+                <input type="text" name="stu_name" id="stu_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label>课程名称:</label>
+                <br>
+                     {volist name="Student->Courses()->select()" id="course"}
+                    <input type="checkbox" name="course_id[]" id="course_id_{$course->id}" value="{$course->id}">
+                    <label for="course_id_{$course->id}">{$course->getData('name')}</label>
+                    {/volist}
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit" style="float:right">保存</button>
+    </form>
+</div>
+<hr />
+{/block}
