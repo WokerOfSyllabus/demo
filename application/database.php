@@ -41,7 +41,7 @@ return [
 // 指定从服务器序号
 'slave_no' => '',
 // 是否严格检查字段是否存在
-'fields_strict' => true,
+'fields_strict' => false,
 // 数据集返回类型 array 数组 collection Collection对象
 'resultset_type' => 'array',
 // 是否自动写入时间戳字段
