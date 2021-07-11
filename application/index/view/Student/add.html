@@ -1,0 +1,43 @@
+{extend name="menu"/}
+{block name="title"}
+新增学生
+{/block}
+ <link rel="stylesheet" type="text/css" href="/thinkphp5/public/static/bootstrap-3.3.5-dist/css/bootstrap.min.css">
+   {block name="content"}
+         <hr />
+ <div class="row">
+  <div class="col-md-12">
+   <form action="{:url('insert')}" method="post">
+    <table border="0" cellspacing="" cellpadding="">
+    <input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}"/>
+    <tr>
+          <td><label>学号:</label></td>
+          <td><input type="text" name="number"/></td> 
+    </tr>
+    <tr>
+          <td><label>姓名:</label></td>
+          <td><input type="text" name="name"/></td> 
+    </tr>
+    <tr>
+          <td><label>性别:</label></td>
+          <td><select name="sex">
+               <option value="0">男</option>
+               <option value="1">女</option>
+              </select></td> 
+    </tr>
+    <tr>
+          <td><label>联系方式:</label></td>
+          <td><input type="text" name="telephone"/></td> 
+    </tr>
+    <tr>
+          <td><button type="submit">保存</button></td> 
+    </tr>
+
+   </table> 
+   </form>
+  </div>
+ </div>
+
+{/block}
+{block name="page"}
+{/block}

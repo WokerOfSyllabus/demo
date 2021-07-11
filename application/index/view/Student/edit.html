@@ -1,0 +1,45 @@
+{extend name="menu"/}
+{block name="title"}
+编辑学生
+{/block}
+
+	<link rel="icon" type="text/css" href=""/>
+{block name="content"}
+   <hr />
+	<div class="row">
+		<div class="col-md-12">
+			<!-- {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php} -->
+			<form action="{:url('update')}" method="post">
+				<table border="0" cellspacing="" cellpadding="">
+				<input type="hidden" name="httpref" value="{$_SERVER['HTTP_REFERER']}">
+				<tr>
+					<td><label>学号:</label></td>
+				    <td><input type="hidden" name="id" value="{$Student->getData('id')}" />
+	                    <input type="text" name="number" value="{$Student->getData('number')}" /></td> 
+				</tr>
+				<tr>
+					<td><label>姓名:</label></td>
+				    <td><input type="text" name="name" value="{$Student->getData('name')}" /></td> 
+				</tr>
+	            <tr>
+					<td><label>性别:</label></td>
+				    <td><select name="sex">
+		                <option value="0">男</option>
+		                <option value="1" {eq name="Student->getData('sex')" value="1" }selected="selected" {/eq}>女</option>
+	                    </select></td> 
+				</tr>
+	            <tr>
+					<td><label>联系方式:</label></td>
+				    <td><input type="text" name="telephone" value="{$Student->getData('telephone')}" /></td> 
+				</tr>
+				<tr>
+					<td><button type="submit">保存</button></td>
+				</tr>	          	            	            
+	            
+	        </table>
+			</form>
+		</div>
+	</div>
+         {/block}
+         {block name="page"}
+         {/block}
